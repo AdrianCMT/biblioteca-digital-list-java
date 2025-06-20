@@ -1,60 +1,104 @@
-# 📚 Sistema de Biblioteca DigitalAdd commentMore actions
 
-Aplicación de línea de comandos desarrollada en Java con enfoque en programación orientada a objetos para la gestión de una biblioteca digital.
+# 📋 Especificaciones Técnicas - Biblioteca Digital v1.0.0
 
-## 🎯 Características
+## 🏗️ Arquitectura del Sistema
 
-- 📌 Registro completo de libros (alta, consulta, modificación y eliminación)
-- 🔎 Filtros de búsqueda por título, autor o número ISBN
-- 📊 Reportes estadísticos sobre la lectura
-- 🖥️ Interfaz amigable mediante consola
-- 👥 Soporte para múltiples autores por libro
-- ⏰ Registro de horas dedicadas a la lectura
-
-## 🏗️ Estructura del Proyecto
-
+### Estructura de Paquetes
 ```
-project-java-herencia-poo/
-├── src/
-│   ├── LibraryApp.java
-│   └── com/
-│       └── sena/
-│           └── app/
-│               └── models/
-│                   └── Book.java
-├── bin/
-├── docs/
-└── README.md
+src/
+├── LibraryApp.java              # Punto de entrada del programa
+└── com/sena/app/models/
+    └── Book.java                # Clase que representa el modelo de libro
 ```
 
-## 🚀 Cómo ejecutar
+### Diagrama de Clases
+```
+┌─────────────────────────────┐
+│            Book             │
+├─────────────────────────────┤
+│ - id: int                   │
+│ - title: String             │
+│ - edititionDate: String     │
+│ - editorial: String         │
+│ - isbn: String              │
+│ - authors: List<String>     │
+│ - readed: boolean           │
+│ - timeReaded: int           │
+├─────────────────────────────┤
+│ + Book(title, date, ...)    │
+│ + getId(): int              │
+│ + getTitle(): String        │
+│ + setTitle(String): void    │
+│ + ... (getters/setters)     │
+│ + toString(): String        │
+└─────────────────────────────┘
+```
 
-1. Compilar el proyecto:
+## 🔧 Funcionalidades Implementadas
+
+### CRUD Completo
+- ✅ **Create**: Registro de libros con validación de campos
+- ✅ **Read**: Visualización de libros en formato de tabla
+- ✅ **Update**: Modificación de datos específicos de cada libro
+- ✅ **Delete**: Eliminación de libros con confirmación del usuario
+
+### Funcionalidades Avanzadas
+- 🔍 **Búsqueda**: Filtrado por título, autor o ISBN
+- 📊 **Estadísticas**: Información agregada sobre libros leídos y tiempo
+- 📋 **Tabla formateada**: Presentación estética y clara de los datos
+- 🎯 **Validaciones**: Control sobre entradas incorrectas del usuario
+
+## 📊 Métricas del Proyecto
+
+### Líneas de Código
+- **Total estimado**: ~400 líneas
+- **Número de clases**: 2 (`LibraryApp`, `Book`)
+- **Cantidad de métodos**: Más de 15
+
+### Nivel de Complejidad
+- Menú de opciones con navegación en múltiples niveles
+- Distintos tipos de búsqueda
+- Cálculo de estadísticas como horas leídas, libros leídos, etc.
+
+## 🧪 Datos de Prueba Incluidos
+
+1. **Effective Java** - Joshua Bloch (leído, 15h)  
+2. **Clean Code** - Robert C. Martin (leído, 12h)  
+3. **Design Patterns** - Gang of Four (no leído)  
+4. **Spring in Action** - Craig Walls (leído, 8h)  
+5. **Java: The Complete Reference** - Herbert Schildt (no leído)  
+
+## 🚀 Instrucciones de Compilación y Ejecución
+
+### Compilación
 ```bash
 javac -d bin src/LibraryApp.java src/com/sena/app/models/Book.java
 ```
 
-2. Ejecutar la aplicación:
+### Ejecución
 ```bash
 java -cp bin LibraryApp
 ```
 
-## 📋 Funcionalidades
+## 🛠️ Tecnologías Utilizadas
 
-➕ Alta de libros: Permite ingresar nuevos registros con datos completos.
-📚 Consulta general: Visualiza todos los libros en una tabla organizada.
-✏️ Edición: Modifica campos específicos de cualquier libro.
-❌ Eliminación: Borra libros existentes con confirmación previa.
-🔍 Búsqueda: Encuentra libros según título, autor o ISBN.
-📈 Análisis: Muestra totales, libros leídos y tiempo invertido.
+- Java SE 8+
+- ArrayList y estructuras del Collections Framework
+- Scanner para entrada del usuario
+- printf para formatear la salida
 
-## 🔧 Tecnologías
+## 📈 Posibles Mejoras Futuras
 
-- Java SE
-- Programación Orientada a Objetos
-- Collections Framework
-- Scanner para entrada de usuario
+1. Persistencia de datos en archivos o base de datos
+2. Implementar interfaz gráfica (Swing o JavaFX)
+3. Validaciones más estrictas (fechas, ISBN)
+4. Clasificación por categorías o géneros
+5. Gestión de préstamos de libros
+6. Exportación a PDF o Excel
+7. Configuración por archivo de propiedades
 
-## 👨‍💻 Desarrollo
+## 🔒 Consideraciones de Seguridad
 
-Proyecto desarrollado usando GitFlow para control de versiones y metodología incremental.
+- Validación de entradas del usuario
+- Manejo de errores con try/catch
+- Restricción de tamaños y tipos de entrada
