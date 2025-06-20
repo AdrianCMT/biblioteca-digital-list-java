@@ -1,4 +1,4 @@
-package com.sena.app.models;More actions
+package com.sena.app.models;
 
 import java.util.ArrayList;
 import java.util.List;
