@@ -15,9 +15,12 @@ public class LibraryApp {
             scanner.nextLine(); // Limpiar buffer
 
             switch (opcion) {
+            scanner.nextLine(); // Limpiar buffer            switch (opcion) {
                 case 1:
-                    System.out.println("Crear libro - En desarrollo");
                     crearLibro();
+                    break;
+                case 2:
+                    leerLibros();
                     break;
                 case 0:
                     System.out.println("¡Gracias por usar la biblioteca!");
@@ -32,15 +35,15 @@ public class LibraryApp {
 
     private static void mostrarMenu() {
         System.out.println("\n═══════════════════════════════════════");
+    private static void mostrarMenu() {        System.out.println("\n═══════════════════════════════════════");
         System.out.println("           BIBLIOTECA DIGITAL");
         System.out.println("═══════════════════════════════════════");
         System.out.println("1. ➕ Crear nuevo libro");
+        System.out.println("2. 📚 Mostrar todos los libros");
         System.out.println("0. 🚪 Salir");
         System.out.println("═══════════════════════════════════════");
         System.out.print("Seleccione una opción: ");
-    }
-
-    private static void crearLibro() {
+    }    private static void crearLibro() {
         System.out.println("\n--- ➕ CREAR NUEVO LIBRO ---");
 
         System.out.print("Título: ");
@@ -56,8 +59,45 @@ public class LibraryApp {
         String isbn = scanner.nextLine();
 
         Book newBook = new Book(title, editionDate, editorial, isbn);
+
+        // Agregar autores
+        System.out.print("Autores (separados por comas): ");
+        String authorsInput = scanner.nextLine();
+        if (!authorsInput.trim().isEmpty()) {
+            String[] authors = authorsInput.split(",");
+            for (String author : authors) {
+                newBook.getAuthors().add(author.trim());
+            }
+        }
+
+        // Estado de lectura
+        System.out.print("¿Está leído? (true/false): ");
+        boolean isReaded = scanner.nextBoolean();
+        newBook.setReaded(isReaded);
+
+        if (isReaded) {
+            System.out.print("Horas de lectura: ");
+            int timeReaded = scanner.nextInt();
+            newBook.setTimeReaded(timeReaded);
+        }
+        scanner.nextLine(); // Limpiar buffer
+
         library.add(newBook);
 
         System.out.println("✅ Libro agregado exitosamente!");
+        System.out.println("📖 ID asignado: " + newBook.getId());
+    }
+
+    private static void leerLibros() {
+        System.out.println("\n--- 📚 BIBLIOTECA COMPLETA ---");
+
+        if (library.isEmpty()) {
+            System.out.println("❌ No hay libros en la biblioteca.");
+            return;
+        }
+
+        for (Book book : library) {
+            System.out.println(book.toString());
+        }
     }
 }
