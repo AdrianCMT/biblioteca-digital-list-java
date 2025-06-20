@@ -19,6 +19,9 @@ public class LibraryApp {
                 case 2:
                     leerLibros();
                     break;
+                case 3:
+                    actualizarLibro();
+                    break;
                 case 0:
                     System.out.println("¡Gracias por usar la biblioteca!");
                     break;
@@ -35,6 +38,7 @@ public class LibraryApp {
         System.out.println("═══════════════════════════════════════");
         System.out.println("1. ➕ Crear nuevo libro");
         System.out.println("2. 📚 Mostrar todos los libros");
+        System.out.println("3. ✏️ Actualizar libro");
         System.out.println("0. 🚪 Salir");
         System.out.println("═══════════════════════════════════════");
         System.out.print("Seleccione una opción: ");
@@ -81,9 +85,6 @@ public class LibraryApp {
 
         System.out.println("✅ Libro agregado exitosamente!");
         System.out.println("📖 ID asignado: " + newBook.getId());
-    }
-
-    private static void leerLibros() {
     }    private static void leerLibros() {
         System.out.println("\n--- 📚 BIBLIOTECA COMPLETA ---");
 
@@ -92,8 +93,6 @@ public class LibraryApp {
             return;
         }
 
-        for (Book book : library) {
-            System.out.println(book.toString());
         mostrarTablaLibros(library);
     }
 
@@ -108,7 +107,7 @@ public class LibraryApp {
             String date = truncateString(book.getEdititionDate(), 12);
             String editorial = truncateString(book.getEditorial(), 17);
             String isbn = truncateString(book.getIsbn(), 16);
-            
+
             StringBuilder authorsStr = new StringBuilder();
             for (int i = 0; i < book.getAuthors().size(); i++) {
                 authorsStr.append(book.getAuthors().get(i));
@@ -117,7 +116,7 @@ public class LibraryApp {
                 }
             }
             String authors = truncateString(authorsStr.toString(), 29);
-            
+
             String readed = book.isReaded() ? "Sí" : "No";
             String timeReaded = String.format("%-11d", book.getTimeReaded());
 
@@ -135,5 +134,38 @@ public class LibraryApp {
         } else {
             return str.substring(0, maxLength - 3) + "...";
         }
+    }
+
+    private static void mostrarLibrosConIndices() {
+        System.out.println("📚 Libros disponibles:");
+        for (int i = 0; i < library.size(); i++) {
+            System.out.println((i + 1) + ". " + library.get(i).getTitle() + " (ID: " + library.get(i).getId() + ")");
+        }
+    }
+
+    private static void actualizarLibro() {
+        System.out.println("\n--- ✏️ ACTUALIZAR LIBRO ---");
+
+        if (library.isEmpty()) {
+            System.out.println("❌ No hay libros para actualizar.");
+            return;
+        }
+
+        mostrarLibrosConIndices();
+
+        System.out.print("Seleccione el número del libro a actualizar: ");
+        int indice = scanner.nextInt();
+        scanner.nextLine();
+
+        if (indice < 1 || indice > library.size()) {
+            System.out.println("❌ Índice no válido.");
+            return;
+        }
+
+        Book libro = library.get(indice - 1);
+        System.out.println("📖 Libro seleccionado: " + libro.getTitle());
+
+        // TODO: Implementar menú de campos a actualizar
+        System.out.println("🚧 Funcionalidad de actualización en desarrollo...");
     }
 }
