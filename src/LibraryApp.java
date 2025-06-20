@@ -144,6 +144,7 @@ public class LibraryApp {
     }
 
     private static void actualizarLibro() {
+    }    private static void actualizarLibro() {
         System.out.println("\n--- ✏️ ACTUALIZAR LIBRO ---");
 
         if (library.isEmpty()) {
@@ -167,5 +168,89 @@ public class LibraryApp {
 
         // TODO: Implementar menú de campos a actualizar
         System.out.println("🚧 Funcionalidad de actualización en desarrollo...");
+        int opcionUpdate;
+        do {
+            mostrarMenuActualizacion();
+            opcionUpdate = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (opcionUpdate) {
+                case 1:
+                    System.out.print("Nuevo título (actual: " + libro.getTitle() + "): ");
+                    String nuevoTitulo = scanner.nextLine();
+                    if (!nuevoTitulo.trim().isEmpty()) {
+                        libro.setTitle(nuevoTitulo);
+                        System.out.println("✅ Título actualizado.");
+                    }
+                    break;
+                case 2:
+                    System.out.print("Nueva fecha de edición (actual: " + libro.getEdititionDate() + "): ");
+                    String nuevaFecha = scanner.nextLine();
+                    if (!nuevaFecha.trim().isEmpty()) {
+                        libro.setEdititionDate(nuevaFecha);
+                        System.out.println("✅ Fecha actualizada.");
+                    }
+                    break;
+                case 3:
+                    System.out.print("Nueva editorial (actual: " + libro.getEditorial() + "): ");
+                    String nuevaEditorial = scanner.nextLine();
+                    if (!nuevaEditorial.trim().isEmpty()) {
+                        libro.setEditorial(nuevaEditorial);
+                        System.out.println("✅ Editorial actualizada.");
+                    }
+                    break;
+                case 4:
+                    System.out.print("Nuevo ISBN (actual: " + libro.getIsbn() + "): ");
+                    String nuevoIsbn = scanner.nextLine();
+                    if (!nuevoIsbn.trim().isEmpty()) {
+                        libro.setIsbn(nuevoIsbn);
+                        System.out.println("✅ ISBN actualizado.");
+                    }
+                    break;
+                case 5:
+                    System.out.print("Nuevos autores separados por comas (actuales: " + String.join(", ", libro.getAuthors()) + "): ");
+                    String nuevosAutores = scanner.nextLine();
+                    if (!nuevosAutores.trim().isEmpty()) {
+                        libro.getAuthors().clear();
+                        String[] authors = nuevosAutores.split(",");
+                        for (String author : authors) {
+                            libro.getAuthors().add(author.trim());
+                        }
+                        System.out.println("✅ Autores actualizados.");
+                    }
+                    break;
+                case 6:
+                    System.out.print("¿Está leído? (true/false) (actual: " + libro.isReaded() + "): ");
+                    boolean nuevoEstado = scanner.nextBoolean();
+                    libro.setReaded(nuevoEstado);
+                    if (nuevoEstado) {
+                        System.out.print("Horas de lectura: ");
+                        int nuevasHoras = scanner.nextInt();
+                        libro.setTimeReaded(nuevasHoras);
+                    } else {
+                        libro.setTimeReaded(0);
+                    }
+                    scanner.nextLine();
+                    System.out.println("✅ Estado de lectura actualizado.");
+                    break;
+                case 0:
+                    System.out.println("✅ Actualización completada.");
+                    break;
+                default:
+                    System.out.println("❌ Opción no válida.");
+            }
+        } while (opcionUpdate != 0);
+    }
+
+    private static void mostrarMenuActualizacion() {
+        System.out.println("\n--- ✏️ CAMPOS A ACTUALIZAR ---");
+        System.out.println("1. Título");
+        System.out.println("2. Fecha de edición");
+        System.out.println("3. Editorial");
+        System.out.println("4. ISBN");
+        System.out.println("5. Autores");
+        System.out.println("6. Estado de lectura");
+        System.out.println("0. Terminar actualización");
+        System.out.print("Seleccione el campo a actualizar: ");
     }
 }
