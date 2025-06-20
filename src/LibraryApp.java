@@ -5,7 +5,9 @@ import com.sena.app.models.Book;
 
 public class LibraryApp {
     private static Scanner scanner = new Scanner(System.in);
-    private static List<Book> library = new ArrayList<>();    public static void main(String[] args) {
+    private static List<Book> library = new ArrayList<>();
+
+    public static void main(String[] args) {
         System.out.println("🚀 Biblioteca Digital - Versión 1.0");
 
         // Inicializar biblioteca con datos de ejemplo
@@ -15,7 +17,9 @@ public class LibraryApp {
         do {
             mostrarMenu();
             opcion = scanner.nextInt();
-            scanner.nextLine(); // Limpiar buffer            switch (opcion) {
+            scanner.nextLine(); // Limpiar buffer
+
+            switch (opcion) {
                 case 1:
                     crearLibro();
                     break;
@@ -57,7 +61,8 @@ public class LibraryApp {
         System.out.println("0. 🚪 Salir");
         System.out.println("═══════════════════════════════════════");
         System.out.print("Seleccione una opción: ");
-    }    private static void crearLibro() {
+    }
+        private static void crearLibro() {
         System.out.println("\n--- ➕ CREAR NUEVO LIBRO ---");
 
         System.out.print("Título: ");
