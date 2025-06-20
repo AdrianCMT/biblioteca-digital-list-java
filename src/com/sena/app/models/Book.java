@@ -1,4 +1,14 @@
-    private String edititionDate;Add commentMore actions
+package com.sena.app.models;More actions
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Book {
+    // Atributos básicos
+    private static int nextId = 1;
+    private int id;
+    private String title;
+    private String edititionDate;
     private String editorial;
     private String isbn;
     private List<String> authors;
@@ -7,7 +17,8 @@
 
     // Constructor básico
     public Book(String title, String edititionDate, String editorial, String isbn) {
-@@ -19,8 +22,90 @@ public Book(String title, String edititionDate, String editorial, String isbn) {
+        this.id = nextId++;
+        this.title = title;
         this.edititionDate = edititionDate;
         this.editorial = editorial;
         this.isbn = isbn;
@@ -89,7 +100,7 @@
             }
         }
 
-        return "📖Libro ID: " + id + "\n" +
+        return "📖 Libro ID: " + id + "\n" +
                "   Título: " + title + "\n" +
                "   Fecha de Edición: " + edititionDate + "\n" +
                "   Editorial: " + editorial + "\n" +
